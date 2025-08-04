@@ -10,6 +10,12 @@ app.use((req, res, next) => {
     next();
 });
 
+const projectsRoutes = require('./routes/projects.routes');
+const userRoutes = require('./routes/user.routes');
+const path = require('path');
+
+app.use(express.json());
+
 mongoose.connect(process.env.MONGO_URL,
     {
         useNewUrlParser: true,
@@ -18,6 +24,8 @@ mongoose.connect(process.env.MONGO_URL,
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/projects', projectsRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
