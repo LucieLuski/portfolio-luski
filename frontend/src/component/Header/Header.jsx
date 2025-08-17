@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import './header.module.scss'
 
 function Header() {
     return (
         <header>
-            <p> Luski portfolio </p>
+            <h1> Luski </h1>
             <nav>
                 <Link to='/'>Accueil</Link>
                 <Link to='/projets'>Projets</Link>
